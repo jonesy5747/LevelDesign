@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActivateWindmill : MonoBehaviour
+public class PushPlayer2 : MonoBehaviour
 {
-
-    public GameObject windmill;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,12 +16,12 @@ public class ActivateWindmill : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            windmill.GetComponent<Animator>().SetTrigger("buttonActivated");
-            Destroy(gameObject.GetComponent<Collider>());
+            Debug.Log("Hit");
+            other.GetComponent<Rigidbody>().AddForce(0, 0, 150);
         }
     }
 }

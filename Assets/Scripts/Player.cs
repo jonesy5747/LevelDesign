@@ -105,7 +105,6 @@ public class Player : MonoBehaviour {
 			MainCam.transform.position = transform.position + CamOffset;
 			MainCam.transform.eulerAngles = new Vector3 (CamAngle, 0, 0);
 			CamOrbit.transform.Rotate (0, OrbitAngle, 0);
-			Debug.Log("NotHit");
 		}
 
 		CheckCamCollision ();
@@ -138,11 +137,6 @@ public class Player : MonoBehaviour {
 		}
 		CameraCollision = Physics.Raycast (r, l);
 	}
-
-	void Update ()
-    {
-		Debug.Log(defaultMaterial);
-    }
 
 	public void ResetPlayer()
 	{
