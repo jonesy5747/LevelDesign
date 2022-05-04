@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour {
 		FormattedTime = FormattedMinutes + ":" + FormattedSeconds;
 		if (ScoreText != null)
         {
-			ScoreText.text = Score.ToString();
+			ScoreText.text = "Score: " + Score.ToString();
 		}
 		if (TimeText != null)
         {

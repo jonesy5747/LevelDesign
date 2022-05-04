@@ -5,7 +5,7 @@ public class CheckPoint : MonoBehaviour {
 
 	void OnTriggerEnter (Collider other)
 	{
-		if (other.transform.parent.tag == "Player")
-			other.transform.parent.GetComponent<Player> ().ResetPosition = transform.position;
+		if (other.gameObject.tag == "Player")
+			other.GetComponent<Player> ().ResetPosition = transform.position;
 	}
 }

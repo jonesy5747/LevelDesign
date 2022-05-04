@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PushPlayer : MonoBehaviour
 {
+    public float forceX;
+    public float forceY;
+    public float forceZ;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +23,7 @@ public class PushPlayer : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            Debug.Log("Hit");
-            other.GetComponent<Rigidbody>().AddForce(-150, 0, 0);
+            other.GetComponent<Rigidbody>().AddForce(forceX, forceY, forceZ);
         }
     }
 }
