@@ -7,6 +7,7 @@ public class DeactivateWindZone : MonoBehaviour
     public GameObject windZone;
     public GameObject particle;
     public GameObject push;
+    public GameObject fan;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +27,8 @@ public class DeactivateWindZone : MonoBehaviour
             windZone.SetActive(false);
             particle.SetActive(false);
             push.SetActive(false);
+
+            fan.GetComponent<Animator>().SetBool("FanOn", false);
         }
     }
 }

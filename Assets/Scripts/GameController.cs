@@ -13,10 +13,12 @@ public class GameController : MonoBehaviour {
 
 	public Text ScoreText;
 	public Text TimeText;
+	public Text DeathText;
 
 	private int CurrentScene;
 
 	[HideInInspector] public int Score;
+	[HideInInspector] public int Deaths;
 	private float TimeElapsed;
 	private string FormattedTime;
 	private string FormattedMinutes;
@@ -30,6 +32,7 @@ public class GameController : MonoBehaviour {
 		Player.transform.position = LevelStart.transform.position + StartOffset;
 
 		Score = 0;
+		Deaths = 0;
 		TimeElapsed = 0.0f;
 		UpdateUI ();
 	}
@@ -75,6 +78,10 @@ public class GameController : MonoBehaviour {
 		if (TimeText != null)
         {
 			TimeText.text = FormattedTime;
+		}
+		if (DeathText != null)
+		{
+			DeathText.text = "Deaths: " + Deaths.ToString();
 		}
 	}
 }

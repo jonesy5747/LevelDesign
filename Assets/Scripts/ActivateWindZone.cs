@@ -7,6 +7,7 @@ public class ActivateWindZone : MonoBehaviour
     public GameObject windZone;
     public GameObject particle;
     public GameObject push;
+    public GameObject fan;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +23,13 @@ public class ActivateWindZone : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
+        if (other.gameObject.tag == "Player")
+        {
             windZone.SetActive(true);
             particle.SetActive(true);
             push.SetActive(true);
+
+            fan.GetComponent<Animator>().SetBool("FanOn", true);
         }
     }
 }

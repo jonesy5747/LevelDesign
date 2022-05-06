@@ -84,7 +84,7 @@ public class Player : MonoBehaviour {
 		HorizontlComponent = (Input.GetAxis("Horizontal"));
 		VerticalComponent = (Input.GetAxis("Vertical"));
 		MovementVector = new Vector3 (HorizontlComponent, 0, VerticalComponent);
-		MovementVector = Quaternion.AngleAxis (OrbitAngle, Vector3.up) * MovementVector;
+		MovementVector = Quaternion.AngleAxis (OrbitAngle, Vector3.up * RollForce) * MovementVector;
 		MovementVector.Normalize ();
 
 		rb.AddForce (MovementVector, ForceMode.Impulse);
