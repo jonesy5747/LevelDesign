@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour {
 	public Text ScoreText;
 	public Text TimeText;
 	public Text DeathText;
+	public Text WinText;
 
 	private int CurrentScene;
 
@@ -23,6 +24,16 @@ public class GameController : MonoBehaviour {
 	private string FormattedTime;
 	private string FormattedMinutes;
 	private string FormattedSeconds;
+
+
+	public GameObject windZone;
+	public GameObject particle;
+	public GameObject push;
+	public GameObject fan;
+	public GameObject timer;
+
+	public Camera cutscene;
+	public Camera camera;
 
 	void Start ()
 	{
@@ -35,6 +46,28 @@ public class GameController : MonoBehaviour {
 		Deaths = 0;
 		TimeElapsed = 0.0f;
 		UpdateUI ();
+
+		windZone.SetActive(false);
+		particle.SetActive(false);
+		push.SetActive(false);
+
+		cutscene.enabled = true;
+		camera.enabled = false;
+
+		Player.SetActive(false);
+		StartCoroutine(cameraWait());
+
+	}
+
+	public IEnumerator cameraWait()
+    {
+		Debug.Log("cutscene");
+		yield return new WaitForSeconds(14f);
+			cutscene.enabled = false;
+			camera.enabled = true;
+			timer.GetComponent<Timer>().timerIsRunning = true;
+			Player.SetActive(true);
+
 	}
 	
 	void Update ()
@@ -43,6 +76,15 @@ public class GameController : MonoBehaviour {
 		UpdateUI ();
 		if (Input.GetKey (KeyCode.KeypadEnter))
 			GoToNextScene ();
+
+		if (Score >= 8)
+        {
+			windZone.SetActive(true);
+			particle.SetActive(true);
+			push.SetActive(true);
+
+			fan.GetComponent<Animator>().SetBool("FanOn", true);
+		}
 	}
 
 	public void GoToNextScene()
@@ -73,7 +115,7 @@ public class GameController : MonoBehaviour {
 		FormattedTime = FormattedMinutes + ":" + FormattedSeconds;
 		if (ScoreText != null)
         {
-			ScoreText.text = "Score: " + Score.ToString();
+			ScoreText.text = "Fan: " + Score.ToString() + "/8";
 		}
 		if (TimeText != null)
         {
@@ -81,7 +123,7 @@ public class GameController : MonoBehaviour {
 		}
 		if (DeathText != null)
 		{
-			DeathText.text = "Deaths: " + Deaths.ToString();
+			DeathText.text = "Strokes: " + Deaths.ToString();
 		}
 	}
 }
